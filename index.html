@@ -1,10 +1,168 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-
-	<title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зелёный Steam</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #162d16;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+        }
+        .navbar a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 16px;
+            font-weight: normal;
+        }
+        .register-btn {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            color: #ffffff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            background: none;
+        }
+        .register-btn:hover {
+            text-decoration: underline;
+        }
+        .container {
+            text-align: center;
+            padding: 50px;
+            background-color: #1a1a1a;
+        }
+        .carousel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 80%;
+            margin: auto;
+            background: #162d16;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .carousel-main {
+            flex: 3;
+            position: relative;
+        }
+        .carousel-main img {
+            width: 100%;
+            border-radius: 10px;
+        }
+        .carousel-info {
+            flex: 1;
+            padding-left: 20px;
+        }
+        .carousel-info h2 {
+            font-size: 22px;
+            font-weight: normal;
+        }
+        .carousel-thumbnails {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .carousel-thumbnails img {
+            width: 100px;
+            height: 60px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .prev {
+            left: -40px;
+        }
+        .next {
+            right: -40px;
+        }
+        .footer {
+            background-color: #0f1d0f;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            font-size: 14px;
+            font-weight: normal;
+        }
+    </style>
 </head>
 <body>
-<p>фэмоз</p>
+    <div class="navbar">
+        <a href="#">Главная</a>
+        <a href="#">Магазин</a>
+        <a href="#">Библиотека</a>
+        <a href="#">Сообщество</a>
+        <button class="register-btn">Регистрация</button>
+    </div>
+    <div class="container">
+        <h1>Популярное и рекомендуемое</h1>
+        <div class="carousel">
+            <button class="carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+            <div class="carousel-main">
+                <img id="mainImage" src="game1.jpg" alt="Игра">
+            </div>
+            <div class="carousel-info">
+                <h2 id="gameTitle">Игра 1</h2>
+                <div class="carousel-thumbnails">
+                    <img src="game1.jpg" alt="Игра 1" onclick="changeGame(0)">
+                    <img src="game2.jpg" alt="Игра 2" onclick="changeGame(1)">
+                    <img src="game3.jpg" alt="Игра 3" onclick="changeGame(2)">
+                    <img src="game4.jpg" alt="Игра 4" onclick="changeGame(3)">
+                </div>
+            </div>
+            <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+    </div>
+    <div class="footer">
+        &copy; 2025 Зелёный Steam. Все права защищены.
+    </div>
+    <script>
+        const games = [
+            { title: "Игра 1", img: "game1.jpg" },
+            { title: "Игра 2", img: "game2.jpg" },
+            { title: "Игра 3", img: "game3.jpg" },
+            { title: "Игра 4", img: "game4.jpg" }
+        ];
+        let index = 0;
+        function moveSlide(step) {
+            index += step;
+            if (index < 0) index = games.length - 1;
+            if (index >= games.length) index = 0;
+            updateGame();
+        }
+        function changeGame(i) {
+            index = i;
+            updateGame();
+        }
+        function updateGame() {
+            document.getElementById("mainImage").src = games[index].img;
+            document.getElementById("gameTitle").innerText = games[index].title;
+        }
+    </script>
 </body>
 </html>
